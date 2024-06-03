@@ -24,6 +24,13 @@ function attackMonster(mood) {
     endRound();
 }
 
+function reset() {
+    currentMonsterHealth = chosenMaxLife;
+    currentPlayerHealth = chosenMaxLife;
+    haseBonusLife = true;
+    resetGame(chosenMaxLife);
+}
+
 function endRound() {
     let initialPlayerHealth = currentPlayerHealth;
     const playerDamage = dealPlayerDamage(MONSTER_ATTACK_VALUE);
@@ -45,6 +52,10 @@ function endRound() {
     }
     else if (currentMonsterHealth <= 0 && currentPlayerHealth <= 0) {
         alert('You Have A Draw!');
+    }
+
+    if (currentMonsterHealth <= 0 || currentPlayerHealth <= 0) {
+        reset();
     }
 }
 

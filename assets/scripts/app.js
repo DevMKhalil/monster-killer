@@ -3,8 +3,19 @@ const MONSTER_ATTACK_VALUE = 14;
 const STRONG_ATTACK_VALUE = 17;
 const HEAL_VALUE = 20;
 let haseBonusLife = true;
+const Mood = {
+    ATTACK : 'ATTACK',
+    STRONG_ATTACK : 'STRONG ATTACK'
+};
 
-chosenMaxLife = 100;
+const enteredValue = prompt('Maximum Life For You and Monster.','100');
+
+let chosenMaxLife = parseInt(enteredValue);
+
+if (isNaN(chosenMaxLife) || chosenMaxLife <= 0) {
+    chosenMaxLife = 100;
+}
+
 currentMonsterHealth = chosenMaxLife;
 currentPlayerHealth = chosenMaxLife;
 
@@ -12,7 +23,7 @@ adjustHealthBars(chosenMaxLife);
 
 function attackMonster(mood) {
     let maxDamage;
-    if (mood === 'ATTACK') {
+    if (mood === Mood.ATTACK) {
         maxDamage = ATTACK_VALUE;
     }
     else{
@@ -60,11 +71,11 @@ function endRound() {
 }
 
 function attackHandler() {
-    attackMonster('ATTACK');
+    attackMonster(Mood.ATTACK);
 }
 
 function strongAttackHandler() {
-    attackMonster('STRONG ATTACK');
+    attackMonster(Mood.STRONG_ATTACK);
 }
 
 function healPlayerHandler() {
